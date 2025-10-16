@@ -2,6 +2,22 @@
 import { onMounted } from 'vue'
 import { KLineChartPro, DefaultDatafeed } from '@klinecharts/pro'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
+import Coinray, { CoinrayCache } from 'coinrayjs'
+
+const token = import.meta.env.VITE_COINRAY_API_KEY || ''
+const coinrayapi = new Coinray(token)
+const cache = new CoinrayCache(token, {
+  apiEndpoint: "https://api-staging.coinray.eu",
+  orderEndpoint: "http://localhost:3000",
+  websocketEndpoint: "wss://ws.coinray.eu/v1"
+}, 30 * 1000)
+
+cache.onTokenExpired(async () => {
+  console.log("TOKEN EXPIRED")
+  // let token = validToken.shift()
+  // console.log(token, validToken)
+  return token || ''
+})
 
 onMounted(() => {
   const chart = new KLineChartPro({
