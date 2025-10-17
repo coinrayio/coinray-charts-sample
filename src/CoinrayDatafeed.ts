@@ -9,7 +9,7 @@ export class CoinrayDatafeed implements Datafeed
     private api: Coinray;
     private cache: CoinrayCache;
     private firstLoad: boolean;
-    private lastBarTime: number;
+    // private lastBarTime: number;
     private lastCandle: Candle | null;
 
     constructor() {
@@ -26,11 +26,12 @@ export class CoinrayDatafeed implements Datafeed
             return token
         })
         this.firstLoad = true;
-        this.lastBarTime = 0;
+        // this.lastBarTime = 0;
         this.lastCandle = null;
     }
 
-    async searchSymbols(search?: string): Promise<SymbolInfo[]> {   
+    async searchSymbols(search?: string): Promise<SymbolInfo[]> { 
+        console.info("searchSymbols", search);  
         return await Promise.resolve([]);
     }
 
