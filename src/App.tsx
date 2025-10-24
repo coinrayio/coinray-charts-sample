@@ -16,7 +16,7 @@ function App() {
         return;
       }
     }
-    const chart = new KLineChartPro({
+    const widget = new KLineChartPro({
       container: document.getElementById('chart-container') || '',
       symbol: {
         exchange: 'BINA',
@@ -36,17 +36,34 @@ function App() {
       orderController: new DummyOrderController()
     })
 
-    const handleResize = () => chart.resize()
+    const handleResize = () => widget.resize()
     window.addEventListener('resize', handleResize)
 
     setTimeout(() => {
-      const line = chart.getInstanceApi()?.createOverlay({ name: 'positionLine', paneId: 'candle_pane', points: [{ timestamp: datafeed.firstData[datafeed.firstData.length - 40].timestamp, value: datafeed.firstData[datafeed.firstData.length - 40].close}]}) as string
+      const chart = widget.getInstanceApi()
+      if (!chart) {
+        return
+      }
+
+      const charts = chart.charts
+      const line = chart.createOrderLine({ disableUndo: true })
       console.info("Created order line:", line)
-      const orderLine = chart.getInstanceApi()?.getOverlays({ name: 'positionLine', id: line, paneId: 'candle_pane'}).at(0) || null
-      if (orderLine && datafeed.firstData.length > 5) {
+
+      // const orderLine = chart.getInstanceApi()?.getOverlays({ name: 'positionLine', id: line, paneId: 'candle_pane'}).at(0) || null
+      if (line && datafeed.firstData.length > 5) {
         setTimeout(() => {
-          orderLine.setPrice(datafeed.firstData[datafeed.firstData.length - 5].close)
+          line.setPrice(datafeed.firstData[datafeed.firstData.length - 5].close)
+            .setLineStyle('dashed')
+            .setLineWidth(2)
+            .setLineDashedValue([2, 6])
             .setText('Buystop Line')
+            .setLineColor('#FF0000')
+            .setBodyBackgroundColor('#FF0000')
+            .setBodyTextColor('#FFFFFF')
+            .setBodyBorderColor('#FF0000')
+            .setQuantityColor('#FFFFFF')
+            .setQuantityBackgroundColor('#FF0000')
+            .setQuantityBorderColor('#FF0000')
         }, 10000)
       } else {
         console.log("No order line set")
