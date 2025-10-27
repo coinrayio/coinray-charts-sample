@@ -3,10 +3,12 @@ import { DummyOrderController, KLineChartPro } from '@klinecharts/pro'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
 import { CoinrayDatafeed } from './CoinrayDatafeed'
+import type { Point } from 'klinecharts'
 
 function App() {
   let initialized = false;
   let datafeed = new CoinrayDatafeed();
+  const originalPosition = 150
 
   useEffect(() => {
     if ((import.meta.env.VITE_APP_ENV || 'development') as string === 'development') {
@@ -48,27 +50,69 @@ function App() {
       const charts = chart.charts
       const line = chart.createOrderLine({ disableUndo: true })
       console.info("Created order line:", line)
+      let cancelMessage: string = 'Are you sure you want to close order?'
+      let modifyMessage: string = 'Are you sure you want to modify position?'
 
       // const orderLine = chart.getInstanceApi()?.getOverlays({ name: 'positionLine', id: line, paneId: 'candle_pane'}).at(0) || null
       if (line && datafeed.firstData.length > 5) {
         setTimeout(() => {
-          line.setPrice(datafeed.firstData[datafeed.firstData.length - 5].close)
+          line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
             .setLineStyle('dashed')
-            .setLineWidth(2)
-            .setLineDashedValue([2, 6])
+            .setLineWidth(1)
+            .setLineDashedValue([6, 2])
             .setText('Buystop Line')
             .setLineColor('#FF0000')
-            .setBodyBackgroundColor('#ff0000a5')
+            .setBodyBackgroundColor('#ff00000c')
             .setBodyTextColor('#0f0e0eff')
-            .setBodyBorderColor('#0073ffff')
+            .setBodyBorderColor('#0d76e0ff')
+            .setBodyFontWeight('medium')
             .setBorderSize(1)
-            .setBorderStyle('dashed')
-            .setBorderDashedValue([0, 0])
-            .setCancelButtonBorderColor('#0073ffff')
-            .setCancelButtonBackgroundColor('#ff000041')
-            .setQuantityColor('#0f0e0eff')
-            .setQuantityBackgroundColor('#ff0000aa')
+            .setBorderRadius(0)
+            .setBorderStyle('solid')
+            .setCancelButtonFontWeight('thin')
+            .setCancelButtonIconColor('#ff0000ff')
+            .setCancelButtonBorderColor('#ff0000ff')
+            .setCancelButtonBackgroundColor('#ff00000c')
+            .setQuantityColor('#ffffffff')
+            .setQuantityBackgroundColor('#0d76e0ff')
             .setQuantityBorderColor('#0073ffff')
+            .onCancel(cancelMessage, (message) => {
+              if (window.confirm(message)) {
+                chart.removeOverlay({ id: line.id })
+              }
+            })
+            .onModify(modifyMessage, (message) => {
+              if (window.confirm(message)) {
+                line.setPrice(datafeed.firstData[datafeed.firstData.length - Math.floor(Math.random() * 150) + 1].close)
+              }
+            })
+            .onMove({}, (p, e) => {
+              if (e) {
+                // Sample of what can be done with event data
+                // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
+              }
+              // Reset the line to original position if you don't want it to be moveable or draggable.
+              // Uncomment the next line to see it in action
+              line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
+            })
+            .onMoveStart({}, (p, e) => {
+              if (e) {
+                // Sample of what can be done with event data
+                // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
+              }
+              // Reset the line to original position if you don't want it to be moveable or draggable.
+              // Uncomment the next line to see it in action
+              line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
+            })
+            .onMoveEnd({}, (p, e) => {
+              if (e) {
+                // Sample of what can be done with event data
+                // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
+              }
+              // Reset the line to original position if you don't want it to be moveable or draggable.
+              // Uncomment the next line to see it in action
+              line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
+            })
         }, 2000)
       } else {
         console.log("No order line set")
