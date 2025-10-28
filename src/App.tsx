@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { DummyOrderController, KLineChartPro } from '@klinecharts/pro'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
@@ -8,7 +8,7 @@ import type { Point } from 'klinecharts'
 function App() {
   let initialized = false;
   let datafeed = new CoinrayDatafeed();
-  const originalPosition = 150
+  let originalPosition = 150;
 
   useEffect(() => {
     if ((import.meta.env.VITE_APP_ENV || 'development') as string === 'development') {
@@ -83,7 +83,9 @@ function App() {
             })
             .onModify(modifyMessage, (message) => {
               if (window.confirm(message)) {
-                line.setPrice(datafeed.firstData[datafeed.firstData.length - Math.floor(Math.random() * 150) + 1].close)
+                const pos = Math.floor(Math.random() * 150) + 1
+                originalPosition = pos
+                line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
               }
             })
             .onMove({}, (p, e) => {
@@ -93,7 +95,7 @@ function App() {
               }
               // Reset the line to original position if you don't want it to be moveable or draggable.
               // Uncomment the next line to see it in action
-              line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
+              // line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
             })
             .onMoveStart({}, (p, e) => {
               if (e) {
@@ -102,7 +104,7 @@ function App() {
               }
               // Reset the line to original position if you don't want it to be moveable or draggable.
               // Uncomment the next line to see it in action
-              line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
+              // line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
             })
             .onMoveEnd({}, (p, e) => {
               if (e) {
