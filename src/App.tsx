@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { DummyOrderController, KLineChartPro } from '@klinecharts/pro'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
 import { CoinrayDatafeed } from './CoinrayDatafeed'
-import type { Point } from 'klinecharts'
+// import type { Point } from 'klinecharts'
 
 function App() {
   let initialized = false;
@@ -47,7 +47,6 @@ function App() {
         return
       }
 
-      const charts = chart.charts
       const line = chart.createOrderLine({ disableUndo: true })
       console.info("Created order line:", line)
       let cancelMessage: string = 'Are you sure you want to close order?'
@@ -89,6 +88,7 @@ function App() {
               }
             })
             .onMove({}, (p, e) => {
+              console.info(p)
               if (e) {
                 // Sample of what can be done with event data
                 // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
@@ -98,6 +98,7 @@ function App() {
               // line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
             })
             .onMoveStart({}, (p, e) => {
+              console.info(p)
               if (e) {
                 // Sample of what can be done with event data
                 // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
@@ -107,6 +108,7 @@ function App() {
               // line.setPrice(datafeed.firstData[datafeed.firstData.length - originalPosition].close)
             })
             .onMoveEnd({}, (p, e) => {
+              console.info(p)
               if (e) {
                 // Sample of what can be done with event data
                 // const price = (e.chart.convertFromPixel([{ y: e.y, x: e.x }], { paneId: 'candle_pane' }) as Partial<Point>).value
