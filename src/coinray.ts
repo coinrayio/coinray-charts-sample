@@ -1,5 +1,5 @@
 import Coinray, { CoinrayCache } from "coinrayjs"
-import { toSafeDate } from "coinrayjs/dist/util";
+// import { toSafeDate } from "coinrayjs/dist/util";
 // import { toSafeDate } from "coinrayjs"
 
 // const token = "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNTgwNTcwNjI1fQ._d-t0O0qb1IHGyl1T_P8zTv1mxNQAXpEqHqHp_2YPUQ";
@@ -28,9 +28,9 @@ cache.onTokenExpired(async () => {
   return token || ''
 })
 
-const log = (start: number|Date, end: number|Date) => {
-  console.log({ start: toSafeDate(start).toUTCString(), end: toSafeDate(end).toUTCString() })
-}
+// const log = (start: number|Date, end: number|Date) => {
+//   console.log({ start: toSafeDate(start).toUTCString(), end: toSafeDate(end).toUTCString() })
+// }
 //
 // let resolution = "1"
 // let end = new Date(Date.parse("2022-06-09T02:00:00"))

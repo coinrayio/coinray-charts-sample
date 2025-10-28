@@ -1,7 +1,7 @@
 import type { Datafeed, DatafeedSubscribeCallback, Period, SymbolInfo } from "@klinecharts/pro";
 import Coinray, { CoinrayCache } from "coinrayjs";
 import type { Candle } from "coinrayjs/dist/types";
-import type { KLineData, Nullable, Overlay } from "klinecharts";
+import type { KLineData } from "klinecharts";
 import type { SubscribeCandlesData } from "./types/CoinrayFeedTypes";
 
 export class CoinrayDatafeed implements Datafeed
