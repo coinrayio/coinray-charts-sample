@@ -11,7 +11,7 @@ function App() {
   let originalPosition = 150;
 
   useEffect(() => {
-    if ((import.meta.env.VITE_APP_ENV || 'development') as string === 'development') {
+    if (((import.meta.env.VITE_APP_ENV || 'development') as string).includes('dev')) {
       console.log("Running in development mode")
       if (!initialized) {
         initialized = true;
@@ -40,9 +40,9 @@ function App() {
 
     const handleResize = () => widget.resize()
     window.addEventListener('resize', handleResize)
+    const chart = widget.getInstanceApi()
 
     setTimeout(() => {
-      const chart = widget.getInstanceApi()
       if (!chart) {
         return
       }
