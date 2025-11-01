@@ -42,10 +42,6 @@ function App() {
     window.addEventListener('resize', handleResize)
     const chart = widget.getInstanceApi()
 
-    if (chart)
-      // chart.setZoomEnabled(false)
-      chart.setZoomBehavior({ main: 'last_bar', xAxis: 'last_bar'})
-
     setTimeout(() => {
       if (!chart) {
         return
