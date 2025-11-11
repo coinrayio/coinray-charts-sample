@@ -71,7 +71,7 @@ function App() {
 
     switch (component) {
       case "coinrayScriptEditor":
-        return <CoinrayScriptEditor value={defaultScript} onChange={function(code: string): void {
+        return <CoinrayScriptEditor value={defaultScript} onRun={function(code: string): void {
             console.log(code)
         } }/>;
       case "chart":
