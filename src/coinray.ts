@@ -1,16 +1,7 @@
-import Coinray, { CoinrayCache } from "coinrayjs"
-// import { toSafeDate } from "coinrayjs/dist/util";
-// import { toSafeDate } from "coinrayjs"
+import Coinray, {CoinrayCache} from "coinrayjs"
 
-// const token = "";
 const validToken = ["token"];
 const token = "token";
-
-// const token = "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNjY1NTc1NDE5fQ.9JG9PWGdA1T1mFO_EKqMcNW6mKHHBc1txZh7WDxRQ74"
-// let validToken = [
-//   "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNjY1NTc1NDc5fQ.cQCGkvVTLbFnLrNe2tmMKOyOhB8HWUffqdBP9fW13gg",
-//   "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNjY1NTc1NTM5fQ.XlRK3aQ3uUp5hQ02m0EKPWi8Ga5zdZFhWOJ30JckYik",
-// ]
 
 const cache = new CoinrayCache(token, {
   apiEndpoint: "https://api-staging.coinray.eu",
@@ -61,7 +52,7 @@ cache.onTokenExpired(async () => {
 // console.log(beginningOfMonth(new Date()))
 // console.log(beginningOfYear(new Date()))
 let api = new Coinray("token")
-api.subscribeOrderBook({ coinraySymbol: "KUCN_USDT_BTC" }, (data) => {
+api.subscribeOrderBook({coinraySymbol: "KUCN_USDT_BTC"}, (data) => {
   console.log(JSON.stringify(data))
 })
 
