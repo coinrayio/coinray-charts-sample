@@ -10,15 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.14",
     "@klinecharts/pro": "file:./klinecharts-pro-0.1.1.tgz",
+    "@monaco-editor/react": "^4.7.0",
+    "@tailwindcss/vite": "^4.1.14",
     "coinrayjs": "^1.9.12",
+    "flexlayout-react": "^0.8.17",
     "jose-jwe-jws": "^0.2.2",
     "klinecharts": "file:./klinecharts-10.0.0-alpha9.tgz",
-    "node-jose": "^2.2.0"
+    "monaco-editor": "^0.54.0",
+    "node-jose": "^2.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
