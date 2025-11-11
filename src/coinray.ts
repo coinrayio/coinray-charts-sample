@@ -2,9 +2,9 @@ import Coinray, { CoinrayCache } from "coinrayjs"
 // import { toSafeDate } from "coinrayjs/dist/util";
 // import { toSafeDate } from "coinrayjs"
 
-// const token = "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNTgwNTcwNjI1fQ._d-t0O0qb1IHGyl1T_P8zTv1mxNQAXpEqHqHp_2YPUQ";
-const validToken = ["eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoyMzY4MTAxNTExfQ.56cJbXGEcAXmp4Ts0zlYmrK2-92qHRWtgmLS8sR7zFI"];
-const token = "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoyMzY4MTAxNTExfQ.56cJbXGEcAXmp4Ts0zlYmrK2-92qHRWtgmLS8sR7zFI";
+// const token = "";
+const validToken = ["token"];
+const token = "token";
 
 // const token = "eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoxNjY1NTc1NDE5fQ.9JG9PWGdA1T1mFO_EKqMcNW6mKHHBc1txZh7WDxRQ74"
 // let validToken = [
@@ -60,7 +60,7 @@ cache.onTokenExpired(async () => {
 // console.log(beginningOfWeek(new Date()))
 // console.log(beginningOfMonth(new Date()))
 // console.log(beginningOfYear(new Date()))
-let api = new Coinray("eyJraWQiOiJSRVVrOGZZVnNveXBSUDIzIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJSRVVrOGZZVnNveXBSUDIzIiwic3ViIjoiYTE0ZmUxZjAtMTJiZi00ZmFmLWI4OWUtZDIwN2NkNjI3NDVlIiwiZXhwIjoyMzY4MTAxNTExfQ.56cJbXGEcAXmp4Ts0zlYmrK2-92qHRWtgmLS8sR7zFI")
+let api = new Coinray("token")
 api.subscribeOrderBook({ coinraySymbol: "KUCN_USDT_BTC" }, (data) => {
   console.log(JSON.stringify(data))
 })
