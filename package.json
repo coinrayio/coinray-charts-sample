@@ -14,7 +14,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.14",
-    "@klinecharts/pro": "file:./klinecharts-pro-0.1.1.tgz",
+    "@klinecharts/pro": "file:/../coinray-chart-ui",
     "coinrayjs": "^1.9.12",
     "jose-jwe-jws": "^0.2.2",
     "klinecharts": "file:./klinecharts-10.0.0-alpha9.tgz",

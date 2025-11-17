@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { DummyOrderController, KLineChartPro } from '@klinecharts/pro'
+import { KLineChartPro } from '@klinecharts/pro'
+import type { StateLineStyle, DeepPartial } from 'klinecharts'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
 import { CoinrayDatafeed } from './CoinrayDatafeed'
@@ -18,6 +19,21 @@ function App() {
         return;
       }
     }
+    const theme = window.confirm('Should we use dark theme for this session?') ? 'dark' : 'light'
+    const paneBgType = window.confirm('Should we use gradient background for this session') ? 'gradient' : 'solid'
+
+    const lineStyle: DeepPartial<StateLineStyle> = {
+      color: '#fff',
+      size: 1,
+      style: 'dashed',
+      dashedValue: [2, 2]
+    }
+    const crosshairStyle = {
+      line: lineStyle,
+      text: {
+        color: lineStyle.color
+      }
+    }
     const widget = new KLineChartPro({
       container: document.getElementById('chart-container') || '',
       symbol: {
@@ -31,11 +47,44 @@ function App() {
       },
       period: { span: 15, type: 'minute', text: '15m' },
       locale: 'en-US',
-      theme: 'light',
+      theme: theme,
       mainIndicators: [],
       subIndicators: [],
       datafeed,
-      orderController: new DummyOrderController()
+      overrides: {
+        background: '#384',  //this overrides the background set in App.css
+        backgroundType: paneBgType,
+        yAxis: {
+          axisLine: {
+            color: 'rgba(255, 255, 255, 1)'
+          },
+          tickLine: {
+            color: 'rgba(255, 255, 255, 1)'
+          },
+          tickText: {
+            color: 'rgba(255, 255, 255, 1)'
+          }
+        },
+        xAxis: {
+          axisLine: {
+            color: 'rgba(255, 255, 255, 1)'
+          },
+          tickLine: {
+            color: 'rgba(255, 255, 255, 1)'
+          },
+          tickText: {
+            color: 'rgba(255, 255, 255, 1)'
+          }
+        },
+        grid: {
+          horizontal: lineStyle,
+          vertical: lineStyle
+        },
+        crosshair: {
+          horizontal: crosshairStyle,
+          vertical: crosshairStyle
+        }
+      }
     })
 
     const handleResize = () => widget.resize()
