@@ -14,34 +14,6 @@ html, body {
 	box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.413), -2px -2px 5px rgba(0, 0, 0, 0.413);
 }
 
-:root {
-  --klinecharts-pro-primary-color: #1677ff !important;
-  --klinecharts-pro-hover-background-color: #1677ffdf !important;
-  --klinecharts-pro-background-color: #ffffff !important;
-  --klinecharts-pro-popover-background-color: #ffffff !important;
-  --klinecharts-pro-text-color: #051441 !important;
-  --klinecharts-pro-text-second-color: #76808F !important;
-  --klinecharts-pro-border-color: #ebedf1 !important;
-  --klinecharts-pro-selected-color: #1677ffdf !important;
-  --klinecharts-pro-popup-shadow-color: rgba(0, 0, 0, 0.2) !important;
-  --klinecharts-pro-pane-background: #e9c4c4 !important;
-  --klinecharts-pro-pane-background-gradient-start: #ffffff !important;
-  --klinecharts-pro-pane-background-gradient-end: #5b5959 !important;
-}
-
-:root [data-theme="dark"] {
-  --klinecharts-pro-hover-background-color: #1677ffdf !important;
-  --klinecharts-pro-background-color: #121241 !important;
-  --klinecharts-pro-popover-background-color: #14142a !important;
-  --klinecharts-pro-text-color: #f8f8f8 !important;
-  --klinecharts-pro-text-second-color: #929AA5 !important;
-  --klinecharts-pro-border-color: #292929 !important;
-  --klinecharts-pro-popup-shadow-color: rgba(0, 0, 0, 0.2) !important;
-  --klinecharts-pro-pane-background: #ffffff !important;
-  --klinecharts-pro-pane-background-gradient-start: #151517 !important;
-  --klinecharts-pro-pane-background-gradient-end: #53538d !important;
-}
-
 ::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
