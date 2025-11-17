@@ -9,11 +9,21 @@ import CoinrayScriptEditor from "./components/CoinrayScriptEditor.tsx";
 
 
 const layout = {
-  global: {
-    rootOrientationVertical: true
-  },
+  global: {},
   borders: [
-
+    {
+      "type": "border",
+      "show": true,
+      "size": 700,
+      "location": "bottom",
+      "children": [
+        {
+          "type": "tab",
+          "name": "Coinray Script",
+          "component": "coinrayScriptEditor"
+        }
+      ]
+    }
   ],
   layout: {
     type: "row",
@@ -21,23 +31,12 @@ const layout = {
     children: [
       {
         type: "tabset",
-        weight: 70,
+        weight: 50,
         children: [
           {
             type: "tab",
             name: "Chart",
             component: "chart",
-          }
-        ]
-      },
-      {
-        type: "tabset",
-        weight: 30,
-        children: [
-          {
-            type: "tab",
-            name: "Coinray Script",
-            component: "coinrayScriptEditor",
           }
         ]
       },
