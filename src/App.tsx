@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { DummyOrderController, KLineChartPro } from '@klinecharts/pro'
+import { KLineChartPro } from '@klinecharts/pro'
 import type { StateLineStyle, DeepPartial } from 'klinecharts'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
