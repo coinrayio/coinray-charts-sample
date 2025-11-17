@@ -5,6 +5,63 @@ import './App.css'
 import { CoinrayDatafeed } from './CoinrayDatafeed'
 // import type { Point } from 'klinecharts'
 
+
+const layout = {
+  global: {},
+  borders: [
+    {
+      "type": "border",
+      "show": true,
+      "size": 700,
+      "location": "bottom",
+      "children": [
+        {
+          "type": "tab",
+          "name": "Coinray Script",
+          "component": "coinrayScriptEditor"
+        }
+      ]
+    }
+  ],
+  layout: {
+    type: "row",
+    weight: 100,
+    children: [
+      {
+        type: "tabset",
+        weight: 50,
+        children: [
+          {
+            type: "tab",
+            name: "Chart",
+            component: "chart",
+          }
+        ]
+      },
+    ]
+  }
+};
+const model = Model.fromJson(layout);
+
+const defaultScript = `indicator("Simple Moving Average example", #{ overlay: true });
+
+let fastLength   = input(10,  "Fast Average Length");
+let slowLength   = input(30,  "Slow Average Length");
+let show         = input(true,  "Show me");
+
+const fastColors = palette(#{orange: color.orange, teal: color.teal});
+const slowColors = palette(#{orange: color.orange, teal: color.teal});
+
+let averageData  = close;
+
+let fastAverage  = ta::sma(averageData, fastLength);
+let slowAverage  = ta::sma(averageData, slowLength);
+
+plot(fastAverage, #{ color: fastColors.orange, title: "Fast SMA" });
+plot(slowAverage, #{ color: slowColors.teal,   title: "Slow SMA" });
+`
+
+
 function App() {
   let initialized = false;
   let datafeed = new CoinrayDatafeed();
