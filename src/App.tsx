@@ -4,7 +4,6 @@ import type { StateLineStyle, DeepPartial } from 'klinecharts'
 import '@klinecharts/pro/dist/klinecharts-pro.css'
 import './App.css'
 import { CoinrayDatafeed } from './CoinrayDatafeed'
-// import type { Point } from 'klinecharts'
 
 function App() {
   let initialized = false;
